@@ -9,14 +9,11 @@
         }
         </style>
         <script type="text/javascript">
-            x= navigator.geolocation;
-            x.getCurrentPosition(success,failure);
-            success=(position)=>{
+              success=(position)=>{
                 console.log("success");
-                var lat = position.coords.latitude;
-                var lng = position.coords.longitude;
-
                 var coords = new google.maps.LatLng(lat,lng);
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude
 
                 var mapOptions = {
                     zoom: 9,
@@ -27,8 +24,11 @@
                 var map = new google.maps.Map(document.getElementById("map"),mapOptions);
                 var marker = new google.maps.Marker({map: map, position: coords});
             }
-
+              
             failure=()=>{console.log("failed");}
+            x= navigator.geolocation;
+            x.getCurrentPosition(success,failure);
+
         </script>
 </head>
 <body>
