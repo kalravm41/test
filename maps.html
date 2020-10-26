@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJT0leVqDRYZxUJmc8mfFNEg9HJUvwnz4&libraries=places&callback=initMap"
+        type="text/javascript"></script>
+        <style type="text/css">
+        #map{
+            width: 400px;
+            height: 400px;
+        }
+        </style>
+        <script type="text/javascript">
+            x= navigator.geolocation;
+            x.getCurrentPosition(success,failure);
+            success=(position)=>{
+                console.log("success");
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+
+                var coords = new google.maps.LatLng(lat,lng);
+
+                var mapOptions = {
+                    zoom: 9,
+                    center: coords,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+
+                var map = new google.maps.Map(document.getElementById("map"),mapOptions);
+                var marker = new google.maps.Marker({map: map, position: coords});
+            }
+
+            failure=()=>{console.log("failed");}
+        </script>
+</head>
+<body>
+    <div id="map"></div>
+</body>
+</html>
